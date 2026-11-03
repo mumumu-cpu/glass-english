@@ -1,0 +1,11 @@
+name = "glass-english"
+pages_build_output_dir = "./dist"
+compatibility_date = "2025-07-18"
+
+[ai]
+binding = "AI"
+
+# Set secrets in the Pages dashboard or with:
+#   wrangler pages secret put GOOGLE_CLIENT_ID
+#   wrangler pages secret put GOOGLE_CLIENT_SECRET
+#   wrangler pages secret put SESSION_SECRET

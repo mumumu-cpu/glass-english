@@ -1,0 +1,33 @@
+{
+  "name": "glass-english",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "pages:dev": "npm run build && wrangler pages dev dist",
+    "deploy": "npm run build && wrangler pages deploy dist",
+    "test:e2e": "playwright test",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "framer-motion": "^11.18.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "@playwright/test": "^1.64.1",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.6.2",
+    "postcss": "^8.5.32",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21",
+    "wrangler": "^3.114.17"
+  }
+}

@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-slate-50 font-sans text-slate-900 antialiased;
+  overscroll-behavior: none;
+}
+
+@layer components {
+  /* Liquid glass surface: translucent white, heavy blur, hairline border, top sheen */
+  .glass {
+    @apply relative overflow-hidden rounded-3xl border border-white/70 bg-white/55 shadow-glass backdrop-blur-2xl backdrop-saturate-150;
+  }
+  .glass::before {
+    content: '';
+    @apply pointer-events-none absolute inset-0 rounded-[inherit];
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 38%),
+      radial-gradient(120% 60% at 0% 0%, rgba(255, 255, 255, 0.6), transparent 60%);
+    mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+    opacity: 0.55;
+  }
+  .glass-strong {
+    @apply glass bg-white/75 shadow-glass-lg;
+  }
+  .glass-pill {
+    @apply relative rounded-full border border-white/80 bg-white/60 shadow-glass backdrop-blur-xl;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-xl bg-slate-200/60;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+    animation: shimmer 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.ambient {
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  background: radial-gradient(40% 35% at 15% 10%, rgba(186, 230, 253, 0.75), transparent 70%),
+    radial-gradient(35% 30% at 90% 20%, rgba(221, 214, 254, 0.7), transparent 70%),
+    radial-gradient(45% 40% at 70% 95%, rgba(204, 251, 241, 0.65), transparent 70%),
+    radial-gradient(30% 30% at 10% 80%, rgba(254, 226, 226, 0.5), transparent 70%), #f8fafc;
+  filter: saturate(1.1);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 12px);
+}
+.pt-safe {
+  padding-top: max(env(safe-area-inset-top), 12px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after {
+    animation: none;
+  }
+}
